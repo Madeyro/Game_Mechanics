@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
+    EnemyFreezable enemyFreezable;
 
 
     void Awake ()
@@ -23,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio = GetComponent <AudioSource> ();
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
+        enemyFreezable = GetComponent<EnemyFreezable>();
 
         currentHealth = startingHealth;
     }
@@ -60,8 +62,10 @@ public class EnemyHealth : MonoBehaviour
     {
         isDead = true;
 
+        enemyFreezable.StopCoroutine("Freeze"); // Stop freeze coroutine due to Nav Mesh error
         capsuleCollider.isTrigger = true;
 
+        anim.enabled = true;
         anim.SetTrigger ("Dead");
 
         enemyAudio.clip = deathClip;

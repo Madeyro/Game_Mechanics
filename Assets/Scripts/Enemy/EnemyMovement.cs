@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
     UnityEngine.AI.NavMeshAgent nav;
-
+    Animator anim;
 
     void Awake ()
     {
@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
         playerHealth = player.GetComponent <PlayerHealth> ();
         enemyHealth = GetComponent <EnemyHealth> ();
         nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -27,6 +28,25 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             nav.enabled = false;
+        }
+    }
+
+    public void StopMovement()
+    {
+        if (nav.enabled)
+        {
+            nav.isStopped = true;
+            anim.enabled = false;
+        }
+        
+    }
+
+    public void ResumeMovement()
+    {
+        if (nav.enabled)
+        {
+            nav.isStopped = false;
+            anim.enabled = true;
         }
     }
 }

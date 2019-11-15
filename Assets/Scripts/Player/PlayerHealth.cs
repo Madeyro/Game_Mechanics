@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public Shield shield;
 
 
     Animator anim;
@@ -49,17 +50,24 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage (int amount)
     {
-        damaged = true;
-
-        currentHealth -= amount;
-
-        healthSlider.value = currentHealth;
-
-        playerAudio.Play ();
-
-        if(currentHealth <= 0 && !isDead)
+        if (shield.isActive)
         {
-            Death ();
+            shield.TakeDamage(amount);
+        }
+        else
+        {
+            damaged = true;
+
+            currentHealth -= amount;
+
+            healthSlider.value = currentHealth;
+
+            playerAudio.Play();
+
+            if (currentHealth <= 0 && !isDead)
+            {
+                Death();
+            }
         }
     }
 
