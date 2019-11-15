@@ -11,9 +11,13 @@ namespace CompleteProject
 
         Animator anim;                              // Reference to the animator component.
         GameObject player;                          // Reference to the player GameObject.
+        GameObject sentry;                          // Reference to the sentry GameObject.
         PlayerHealth playerHealth;                  // Reference to the player's health.
+        SentryHealth sentryHealth;                  // Reference to the sentry's health.
+        Sentry sentryComp;                          // Reference to the sentry's main component.
         EnemyHealth enemyHealth;                    // Reference to this enemy's health.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
+        bool sentryInRange;                         // Whether player is within the trigger collider and can be attacked.
         float timer;                                // Timer for counting up to the next attack.
 
 
@@ -21,7 +25,10 @@ namespace CompleteProject
         {
             // Setting up the references.
             player = GameObject.FindGameObjectWithTag ("Player");
+            sentry = GameObject.FindGameObjectWithTag ("Sentry");
             playerHealth = player.GetComponent <PlayerHealth> ();
+            sentryHealth = sentry.GetComponent<SentryHealth>();
+            sentryComp = sentry.GetComponent<Sentry>();
             enemyHealth = GetComponent<EnemyHealth>();
             anim = GetComponent <Animator> ();
         }
@@ -35,6 +42,12 @@ namespace CompleteProject
                 // ... the player is in range.
                 playerInRange = true;
             }
+            // If the entering collider is the sentry...
+            else if (other.gameObject == sentry && !other.isTrigger)
+            {
+                // ... the sentry is in range.
+                sentryInRange = true;
+            }
         }
 
 
@@ -46,19 +59,31 @@ namespace CompleteProject
                 // ... the player is no longer in range.
                 playerInRange = false;
             }
+            // If the exiting collider is the sentry...
+            else if (other.gameObject == sentry)
+            {
+                // ... the sentry is no longer in range.
+                sentryInRange = false;
+            }
         }
 
 
         void Update ()
         {
+            if (!sentryComp.IsDeployed)
+            {
+                sentryInRange = false;
+            }
+
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-            if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+            if(timer >= timeBetweenAttacks && enemyHealth.currentHealth > 0)
             {
                 // ... attack.
-                Attack ();
+                if (playerInRange) AttackPlayer();
+                else if (sentryInRange && sentryComp.IsDeployed) AttackSentry();
             }
 
             // If the player has zero or less health...
@@ -70,7 +95,7 @@ namespace CompleteProject
         }
 
 
-        void Attack ()
+        void AttackPlayer ()
         {
             // Reset the timer.
             timer = 0f;
@@ -80,6 +105,19 @@ namespace CompleteProject
             {
                 // ... damage the player.
                 playerHealth.TakeDamage (attackDamage);
+            }
+        }
+
+        void AttackSentry()
+        {
+            // Reset the timer.
+            timer = 0f;
+
+            // If the player has health to lose...
+            if (sentryHealth.currentHealth > 0)
+            {
+                // ... damage the player.
+                sentryHealth.TakeDamage(attackDamage);
             }
         }
     }
