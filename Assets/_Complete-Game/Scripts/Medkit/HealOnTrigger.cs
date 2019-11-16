@@ -10,8 +10,11 @@ namespace CompleteProject
             if (other.tag == "Player")
             {
                 PlayerHealth hp = other.gameObject.GetComponent<PlayerHealth>();
-                hp.Heal(restoreAmount);
-                Destroy(this.gameObject);
+                if (hp.currentHealth != 100)
+                {
+                    hp.Heal(restoreAmount);
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
