@@ -16,10 +16,14 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
     EnemyFreezable enemyFreezable;
+    GameObject player;
+    Shield playerShield;
 
 
     void Awake ()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerShield = player.GetComponentInChildren<Shield>();
         anim = GetComponent <Animator> ();
         enemyAudio = GetComponent <AudioSource> ();
         hitParticles = GetComponentInChildren <ParticleSystem> ();
@@ -67,6 +71,8 @@ public class EnemyHealth : MonoBehaviour
 
         anim.enabled = true;
         anim.SetTrigger ("Dead");
+
+        playerShield.AddPower(scoreValue);
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();

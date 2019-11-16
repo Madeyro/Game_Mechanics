@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shield : MonoBehaviour
 {
@@ -12,37 +13,36 @@ public class Shield : MonoBehaviour
     public int maxHealth;
     public int health;
     public bool isActive = false;
-    
-    
+    public int maxPower;// power that is needed to activate shield
+    public int currentPower;
+    public Slider shieldPowerSlider;
+    public Text currentShieldPowerText;
+    public Text maxShieldPowerText;
+
     // Start is called before the first frame update
     protected virtual void Awake()
     {
         shieldCollider = GetComponent<SphereCollider>();
         shieldRenderer = GetComponent<MeshRenderer>();
         ShieldDeactivation();
+        currentPower = maxPower;
+        maxShieldPowerText.text = "/" + maxPower.ToString();
+        RedrawShieldUI();
     }
-
-    //private void Update()
-    //{
-    //    if (health <= 0)
-    //    {
-    //        StopCoroutine("RunTimer");
-    //    }
-
-    //    if (!isActive && Input.GetKeyDown(KeyCode.Q))
-    //    {
-    //        ShieldActivation();
-    //    }
-    //}
 
     protected virtual void ShieldActivation()
     {
-        // Activate the shield
-        health = maxHealth; // New shield => new life
-        isActive = true;
-        shieldCollider.enabled = true;
-        shieldRenderer.enabled = true;
-        StartCoroutine("RunTimer");
+        if (currentPower == maxPower)
+        {
+            // Activate the shield
+            health = maxHealth; // New shield => new life
+            isActive = true;
+            shieldCollider.enabled = true;
+            shieldRenderer.enabled = true;
+            currentPower = 0;
+            RedrawShieldUI();
+            StartCoroutine("RunTimer");
+        }
     }
 
     protected virtual IEnumerator RunTimer()
@@ -74,5 +74,25 @@ public class Shield : MonoBehaviour
             StopCoroutine("RunTimer");
             ShieldDeactivation();
         }
+    }
+
+    public void AddPower(int amount)
+    {
+        currentPower += amount;
+        if (currentPower > maxPower)
+        {
+            currentPower = maxPower;
+        }
+        else if (currentPower < 0)
+        {
+            currentPower = 0;
+        }
+        RedrawShieldUI();
+    }
+
+    private void RedrawShieldUI()
+    {
+        shieldPowerSlider.value = currentPower;
+        currentShieldPowerText.text = currentPower.ToString();
     }
 }
