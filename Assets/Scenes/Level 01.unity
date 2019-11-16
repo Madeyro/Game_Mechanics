@@ -767,6 +767,16 @@ PrefabInstance:
       propertyPath: shieldPowerSlider
       value: 
       objectReference: {fileID: 1880810115}
+    - target: {fileID: 9008554793676412728, guid: 9a434534120760944aaa6266f75403ac,
+        type: 3}
+      propertyPath: currentShieldPowerText
+      value: 
+      objectReference: {fileID: 755035608}
+    - target: {fileID: 9008554793676412728, guid: 9a434534120760944aaa6266f75403ac,
+        type: 3}
+      propertyPath: maxShieldPowerText
+      value: 
+      objectReference: {fileID: 1665436039}
     - target: {fileID: 9008554793676412725, guid: 9a434534120760944aaa6266f75403ac,
         type: 3}
       propertyPath: m_TagString
