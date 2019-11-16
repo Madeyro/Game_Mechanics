@@ -37,6 +37,7 @@ namespace CompleteProject
         {
             isDead = false;
             currentHealth = startingHealth;
+            healthSlider.value = currentHealth;
         }
 
         public void TakeDamage(int amount)

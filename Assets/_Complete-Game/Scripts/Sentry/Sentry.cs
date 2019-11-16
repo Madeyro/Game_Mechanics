@@ -60,8 +60,8 @@ namespace CompleteProject
 
         public bool Deploy(Vector3 spawnPosition, Quaternion spawnRotation)
         {
-            transform.position = spawnPosition;
-            transform.rotation = spawnRotation;
+            transform.parent.position = new Vector3(spawnPosition.x, 0, spawnPosition.z);
+            transform.parent.rotation = spawnRotation;
 
             for (float angle = 0.0f; angle < 361.0f; angle += 60.0f)
             {
@@ -129,6 +129,7 @@ namespace CompleteProject
             if (!target || target.IsDead)
             {
                 SortedList<float, EnemyHealth> validTargets = new SortedList<float, EnemyHealth>();
+                enemiesInRange.RemoveAll(o => o == null);
                 foreach (EnemyHealth comp in enemiesInRange)
                 {
                     Transform trans = comp.transform;

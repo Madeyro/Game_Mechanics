@@ -11,14 +11,15 @@ namespace CompleteProject
         EnemyHealth enemyHealth;        // Reference to this enemy's health.
         UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
 
-        public bool TargetSentry { get; set; } = false;
+        public bool TargetSentry { get { return targetSentry; } set { targetSentry = (value && sentry); } }
+        private bool targetSentry = false;
 
 
         void Awake ()
         {
             // Set up the references.
             player = GameObject.FindGameObjectWithTag ("Player").transform;
-            sentry = GameObject.FindGameObjectWithTag("Sentry").transform;
+            sentry = GameObject.FindGameObjectWithTag("Sentry")?.transform;
             playerHealth = player.GetComponent <PlayerHealth> ();
             enemyHealth = GetComponent <EnemyHealth> ();
             nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();

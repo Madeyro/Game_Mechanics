@@ -20,7 +20,7 @@ namespace CompleteProject
                 sentryTipText.text = "Sentry cooldown: " + Mathf.CeilToInt(Cooldown);
             }
             else
-                sentryTipText.text = (sentryGun.IsDeployed) ? "Press T near the sentry to pick it up." : "Press T to place the sentry.";
+                sentryTipText.text = (sentryGun.IsDeployed) ? "(T near sentry)    pick the sentry" : "(T)    place the sentry";
 
             if (Input.GetButtonDown("PlaceSentry"))
             {

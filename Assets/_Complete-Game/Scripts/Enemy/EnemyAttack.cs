@@ -27,8 +27,8 @@ namespace CompleteProject
             player = GameObject.FindGameObjectWithTag ("Player");
             sentry = GameObject.FindGameObjectWithTag ("Sentry");
             playerHealth = player.GetComponent <PlayerHealth> ();
-            sentryHealth = sentry.GetComponent<SentryHealth>();
-            sentryComp = sentry.GetComponent<Sentry>();
+            sentryHealth = sentry?.GetComponent<SentryHealth>();
+            sentryComp = sentry?.GetComponent<Sentry>();
             enemyHealth = GetComponent<EnemyHealth>();
             anim = GetComponent <Animator> ();
         }
@@ -43,7 +43,7 @@ namespace CompleteProject
                 playerInRange = true;
             }
             // If the entering collider is the sentry...
-            else if (other.gameObject == sentry && !other.isTrigger)
+            else if (sentry && other.gameObject == sentry && !other.isTrigger)
             {
                 // ... the sentry is in range.
                 sentryInRange = true;
@@ -60,7 +60,7 @@ namespace CompleteProject
                 playerInRange = false;
             }
             // If the exiting collider is the sentry...
-            else if (other.gameObject == sentry)
+            else if (sentry && other.gameObject == sentry)
             {
                 // ... the sentry is no longer in range.
                 sentryInRange = false;
@@ -70,7 +70,7 @@ namespace CompleteProject
 
         void Update ()
         {
-            if (!sentryComp.IsDeployed)
+            if (sentry && !sentryComp.IsDeployed)
             {
                 sentryInRange = false;
             }
@@ -114,10 +114,10 @@ namespace CompleteProject
             timer = 0f;
 
             // If the player has health to lose...
-            if (sentryHealth.currentHealth > 0)
+            if (sentryHealth?.currentHealth > 0)
             {
                 // ... damage the player.
-                sentryHealth.TakeDamage(attackDamage);
+                sentryHealth?.TakeDamage(attackDamage);
             }
         }
     }
