@@ -9,6 +9,7 @@ public class GlacialShield : Shield
     public float maxFreezeRadius;
     public float minFreezeRadius;
     public float freezeDuration;
+    public ParticleSystem freezeParticles;
 
     [SerializeField]
     private float freezeRadius;
@@ -44,10 +45,15 @@ public class GlacialShield : Shield
     {
         // Freeze all enemies in particular
         CalculateFreezeRadius();
-        Collider[] objectsInFreezeArea = Physics.OverlapSphere(transform.position, freezeRadius, freezeObjectMask);
-        Collider[] sortedEnemiesInFreezeArea = SortEnemiesByDistanceFromShield(objectsInFreezeArea);
-        Debug.Log("FreezeEnemies Number: " + sortedEnemiesInFreezeArea.Length);
-        StartCoroutine("Freeze", sortedEnemiesInFreezeArea);
+        ParticleSystem.MainModule newParticleMain = freezeParticles.main;
+        ParticleSystem.MinMaxCurve x = freezeParticles.main.startLifetime;
+        x.constant = freezeRadius/10;
+        newParticleMain.startLifetime = x;
+        freezeParticles.Play();
+        //Collider[] objectsInFreezeArea = Physics.OverlapSphere(transform.position, freezeRadius, freezeObjectMask);
+        //Collider[] sortedEnemiesInFreezeArea = SortEnemiesByDistanceFromShield(objectsInFreezeArea);
+        //Debug.Log("FreezeEnemies Number: " + sortedEnemiesInFreezeArea.Length);
+        //StartCoroutine("Freeze", sortedEnemiesInFreezeArea);
     }
 
     private IEnumerator Freeze(Collider[] sortedEnemiesInFreezeArea)
@@ -92,5 +98,5 @@ public class GlacialShield : Shield
             freezeRadius = minFreezeRadius;
         }
     }
-    
+
 }
