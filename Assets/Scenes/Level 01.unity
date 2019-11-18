@@ -2153,6 +2153,11 @@ PrefabInstance:
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 101904826}
+    - target: {fileID: 4682255234811620577, guid: f8cb4b40481990c43b977b79edc5effa,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4682255234747718274, guid: f8cb4b40481990c43b977b79edc5effa,
         type: 3}
       propertyPath: shieldPowerSlider
