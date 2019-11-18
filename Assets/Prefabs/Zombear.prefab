@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6042810539500751105}
   - component: {fileID: 6042810539500751110}
   - component: {fileID: -4723582377020090983}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Zombear
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6042810539283879595}
   - component: {fileID: 6042810539297966019}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Zombear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ef39ae7291c751249b296f00bf6fb042, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ef39ae7291c751249b296f00bf6fb042, type: 3}
       propertyPath: m_LocalPosition.x

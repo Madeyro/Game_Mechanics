@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e797a71ad1fb9b40946a1e1c5ebd036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freezeMaterial: {fileID: 2100000, guid: 7637d0010bbd18d46894639f9ee5e45d, type: 2}
 --- !u!1001 &5165975096215072604
 PrefabInstance:
   m_ObjectHideFlags: 0

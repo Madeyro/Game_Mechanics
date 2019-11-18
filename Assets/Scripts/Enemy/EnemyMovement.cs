@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
         {
-            Debug.Log("NAV MESH AGENT: " + nav.enabled);
+            //Debug.Log("NAV MESH AGENT: " + nav.enabled);
             nav.SetDestination (player.position);
         }
         else
