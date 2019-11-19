@@ -245,7 +245,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -5027,7 +5027,7 @@ GameObject:
   - component: {fileID: 5789463802437366346}
   - component: {fileID: 5789463802437399724}
   m_Layer: 0
-  m_Name: PlayerShield 1
+  m_Name: PlayerShield
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

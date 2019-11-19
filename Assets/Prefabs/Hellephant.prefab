@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e797a71ad1fb9b40946a1e1c5ebd036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freezeMaterial: {fileID: 2100000, guid: 3c00c6fca45414e4e8d0a98a4d9e3ae6, type: 2}
 --- !u!1 &925337923940803940
 GameObject:
   m_ObjectHideFlags: 0

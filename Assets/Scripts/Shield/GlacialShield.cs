@@ -71,41 +71,31 @@ public class GlacialShield : Shield
         // Get all enemies in freeze area
         Collider[] objectsInFreezeArea = Physics.OverlapSphere(transform.position, freezeRadius, freezeObjectMask);
         // Sort enemies by distance
-        List<Collider> sortedEnemiesInFreezeArea = SortEnemiesByDistanceFromShield(objectsInFreezeArea.ToList());
+        List<Collider> enemiesInFreezeArea = GetEnemies(objectsInFreezeArea.ToList());
 
-        StartCoroutine(Freeze(sortedEnemiesInFreezeArea, particlesLifeTime));
+        Freeze(enemiesInFreezeArea, particlesLifeTime);
     }
 
-    private IEnumerator Freeze(List<Collider> sortedEnemiesInFreezeArea, float particlesLifeTime)
+    private void Freeze(List<Collider> enemiesInFreezeArea, float particlesLifeTime)
     {
+        Vector3 originFreezePosition = transform.position;
         // Freeze simulation time
         float time = 0;
-        int numOfEnemies = sortedEnemiesInFreezeArea.Count;
-        for (int i = 0; i < numOfEnemies; i++)
+
+        foreach(Collider enemyInFreezeArea in enemiesInFreezeArea)
         {
-            // Try to sort enemies again for more precise result
-            sortedEnemiesInFreezeArea = SortEnemiesByDistanceFromShield(sortedEnemiesInFreezeArea);
-
-           // Player to enemy distance
-            float distance = Vector3.Distance(transform.position, sortedEnemiesInFreezeArea.First().transform.position);
+            // Player to enemy distance
+            float distance = Vector3.Distance(originFreezePosition, enemyInFreezeArea.transform.position);
+            
             // Compute time when the enemy should be freezed
-            float currentTime = (distance * particlesLifeTime) / freezeRadius;
-            // Calculate the time that left to freeze the enemy
-            float freezeTime = currentTime - time;
-            // FreezeTime has to be positive value
-            freezeTime = freezeTime >= 0 ? freezeTime : 0;
-            Debug.Log("FreezeTIME: "+ freezeTime);
-            // Change freeze simulation time
-            time = currentTime;
+            time = (distance * particlesLifeTime) / freezeRadius;
 
-            EnemyFreezable freezableEnemy = sortedEnemiesInFreezeArea.First().GetComponent<EnemyFreezable>();
+            EnemyFreezable freezableEnemy = enemyInFreezeArea.GetComponent<EnemyFreezable>();
             if (freezableEnemy != null)
             {
                 // Freeze the enemy
-                yield return new WaitForSeconds(freezeTime);
-                freezableEnemy.StartCoroutine("Freeze", freezeDuration);
+                freezableEnemy.StartCoroutine(freezableEnemy.Freeze(freezeDuration, time));
             }
-            sortedEnemiesInFreezeArea.Remove(sortedEnemiesInFreezeArea.First());
         }
     }
 
@@ -123,21 +113,19 @@ public class GlacialShield : Shield
         return x.constant;
     }
 
-    private List<Collider> SortEnemiesByDistanceFromShield(List<Collider> objects)
+    private List<Collider> GetEnemies(List<Collider> objects)
     {
-        List<Collider> sortedEnemies = new List<Collider>();
+        List<Collider> enemies = new List<Collider>();
         foreach (Collider obj in objects)
         {
             // Check for enemy ... we want to freeze just an enemy
             if (obj.CompareTag("Enemy"))
             {
-                sortedEnemies.Add(obj);
+                enemies.Add(obj);
             }
         }
 
-        sortedEnemies = sortedEnemies.OrderBy(x => Vector2.Distance(transform.position, x.transform.position)).ToList();
-
-        return sortedEnemies;
+        return enemies;
     }
 
     private void CalculateFreezeRadius()

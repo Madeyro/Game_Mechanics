@@ -19,7 +19,6 @@ public class EnemyHealth : MonoBehaviour
     GameObject player;
     Shield playerShield;
 
-
     void Awake ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
