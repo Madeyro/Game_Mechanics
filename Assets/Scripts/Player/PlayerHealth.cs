@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 
 public class PlayerHealth : MonoBehaviour
@@ -87,9 +86,8 @@ public class PlayerHealth : MonoBehaviour
         playerShooting.enabled = false;
     }
 
-
-    public void RestartLevel ()
+    public void RestartLevel()
     {
-        SceneManager.LoadScene (0);
+        // It must stay due to animation event
     }
 }

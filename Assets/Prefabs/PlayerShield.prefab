@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7637d0010bbd18d46894639f9ee5e45d, type: 2}
+  - {fileID: 2100000, guid: 47d5a45896f0ac44eb33421c8494e1cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldDuration: 5
-  maxHealth: 50
+  maxHealth: 100
   health: 5
   isActive: 0
   maxPower: 50
@@ -115,7 +115,7 @@ MonoBehaviour:
   shieldUI: {fileID: 4682255234747718274}
   maxFreezeRadius: 10
   minFreezeRadius: 7.5
-  freezeDuration: 5
+  freezeDuration: 10
   freezeParticles: {fileID: 4682255234811620577}
 --- !u!1 &4467120645372872694
 GameObject:

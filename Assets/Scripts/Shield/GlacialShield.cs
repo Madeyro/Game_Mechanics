@@ -93,8 +93,13 @@ public class GlacialShield : Shield
             EnemyFreezable freezableEnemy = enemyInFreezeArea.GetComponent<EnemyFreezable>();
             if (freezableEnemy != null)
             {
-                // Freeze the enemy
-                freezableEnemy.StartCoroutine(freezableEnemy.Freeze(freezeDuration, time));
+                // If enemy is not freezed
+                if (!freezableEnemy.isFreezed)
+                {
+                    // Freeze the enemy
+                    freezableEnemy.StartCoroutine(freezableEnemy.Freeze(freezeDuration, time));
+                }
+                
             }
         }
     }

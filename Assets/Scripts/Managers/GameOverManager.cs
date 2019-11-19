@@ -6,7 +6,6 @@ public class GameOverManager : MonoBehaviour
     public PlayerHealth playerHealth;
     public float restartDelay = 5f;
 
-
     Animator anim;
     float restartTimer;
 
@@ -23,10 +22,10 @@ public class GameOverManager : MonoBehaviour
         {
             anim.SetTrigger("GameOver");
             restartTimer += Time.deltaTime;
-
             if (restartTimer >= restartDelay)
             {
-                SceneManager.LoadScene("Level 01");
+                // Reload the level that is currently loaded.
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
