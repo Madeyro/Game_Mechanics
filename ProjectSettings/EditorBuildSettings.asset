@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Level 01.unity
-    guid: ece635aa607a375449c6513c996203f9
+    path: Assets/_Complete-Game/_Complete-Game.unity
+    guid: b09ca7cdc3d1be948bf8bfec3ca9cde8
+  - enabled: 1
+    path: Assets/_Complete-Game/_Level-Medkit.unity
+    guid: 520f84c531f5e904dbad70a5ef36ef0e
   - enabled: 1
     path: Assets/Scenes/Level 02.unity
     guid: 895a495a78ffa31428706394f1d5c524
+  - enabled: 1
+    path: Assets/_Complete-Game/_MechLevel_Sentry.unity
+    guid: 874e24e631d7345b0a29cc297bedb405
   m_configObjects: {}

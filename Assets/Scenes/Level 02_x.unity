@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544f2064df03e95419b4a5147c506b08, type: 3}
+  m_Script: {fileID: 11500000, guid: 241d66389a7b5fc4d9f60a020d5a4f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &294933122 stripped
@@ -1631,6 +1631,16 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 2109938876}
+    - target: {fileID: 5789463802437366346, guid: f8cb4b40481990c43b977b79edc5effa,
+        type: 3}
+      propertyPath: damageImage
+      value: 
+      objectReference: {fileID: 667673364}
+    - target: {fileID: 5789463802437366346, guid: f8cb4b40481990c43b977b79edc5effa,
+        type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 2037738291}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8cb4b40481990c43b977b79edc5effa, type: 3}
 --- !u!1 &384286911
@@ -1832,6 +1842,24 @@ PrefabInstance:
       objectReference: {fileID: 294933122}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3054e8ca8441c344b8d7413105aa47e8, type: 3}
+--- !u!1 &542856559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6835739560780969655, guid: 3054e8ca8441c344b8d7413105aa47e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 542856558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &542856560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542856559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39eb61f2df8cfbb4fbc8eba4cd2ae7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &547450003
 GameObject:
   m_ObjectHideFlags: 0
@@ -7997,24 +8025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1786744553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6835739560780969655, guid: 3054e8ca8441c344b8d7413105aa47e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 542856558}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1786744554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786744553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39eb61f2df8cfbb4fbc8eba4cd2ae7d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1788293512
 GameObject:
   m_ObjectHideFlags: 0
@@ -8244,6 +8254,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad67cddd729fb4342be2063a3f5ad7cc, type: 3}
+--- !u!114 &1894013258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5789463802437366346, guid: f8cb4b40481990c43b977b79edc5effa,
+    type: 3}
+  m_PrefabInstance: {fileID: 383422929}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a5676dde878c84b809a1e8b9ef5a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1910264644
 GameObject:
   m_ObjectHideFlags: 0
@@ -9322,19 +9344,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129319892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a99222b1e4a384e923ac7e86efc709, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a68c5ea262dd64aa2d360059997514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 294933116}
-  enemy: {fileID: 5165975096912160791, guid: 57d413d609dc79d448d6ddcef85037a4, type: 3}
+  playerHealth: {fileID: 1894013258}
+  enemy: {fileID: 0}
   spawnTime: 3
-  spawnPoints:
-  - {fileID: 1589471227}
-  - {fileID: 1301375784}
-  - {fileID: 1001391333}
-  - {fileID: 708020872}
-  - {fileID: 1619171148}
-  - {fileID: 987579179}
+  spawnPoints: []
   spawnAll: 0
 --- !u!114 &2129319894
 MonoBehaviour:
@@ -9345,19 +9361,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129319892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a99222b1e4a384e923ac7e86efc709, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a68c5ea262dd64aa2d360059997514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 294933116}
-  enemy: {fileID: 6042810539284302473, guid: ee33ec09c4e96d4419b79bec9337ecd4, type: 3}
+  playerHealth: {fileID: 1894013258}
+  enemy: {fileID: 0}
   spawnTime: 3
-  spawnPoints:
-  - {fileID: 1420359030}
-  - {fileID: 1995904314}
-  - {fileID: 736061909}
-  - {fileID: 1506388547}
-  - {fileID: 195285402}
-  - {fileID: 1910264645}
+  spawnPoints: []
   spawnAll: 0
 --- !u!114 &2129319895
 MonoBehaviour:
@@ -9368,17 +9378,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129319892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a99222b1e4a384e923ac7e86efc709, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a68c5ea262dd64aa2d360059997514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 294933116}
-  enemy: {fileID: 925337923940803938, guid: 7a5aeceb2f97b6b48a7f0f9ac295bfba, type: 3}
+  playerHealth: {fileID: 1894013258}
+  enemy: {fileID: 153412, guid: 548c56f4bcf4db24b8aa057e9846a005, type: 3}
   spawnTime: 10
-  spawnPoints:
-  - {fileID: 1363644250}
-  - {fileID: 364318565}
-  - {fileID: 799025173}
-  - {fileID: 1112699611}
+  spawnPoints: []
   spawnAll: 0
 --- !u!4 &2129319896
 Transform:

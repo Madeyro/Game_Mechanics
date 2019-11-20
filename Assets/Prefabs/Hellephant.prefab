@@ -86,7 +86,7 @@ Animator:
   m_Controller: {fileID: 22100000, guid: 7db92f0f97e3118448e53be4c0bc51e8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 0
@@ -305,10 +305,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 925337923940803938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e797a71ad1fb9b40946a1e1c5ebd036, type: 3}
+  m_Script: {fileID: 11500000, guid: e869d510495829848b3c9bc52e92d8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   freezeMaterial: {fileID: 2100000, guid: 3c00c6fca45414e4e8d0a98a4d9e3ae6, type: 2}
+  isFreezed: 0
 --- !u!1 &925337923940803940
 GameObject:
   m_ObjectHideFlags: 0

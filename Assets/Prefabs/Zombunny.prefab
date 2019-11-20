@@ -356,10 +356,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5165975096912160791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e797a71ad1fb9b40946a1e1c5ebd036, type: 3}
+  m_Script: {fileID: 11500000, guid: e869d510495829848b3c9bc52e92d8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   freezeMaterial: {fileID: 2100000, guid: 9b35b38ec4927a248baa9af7a866c06c, type: 2}
+  isFreezed: 0
 --- !u!1001 &5165975096215072604
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5895,6 +5895,7 @@ GameObject:
   - component: {fileID: 1851598978}
   - component: {fileID: 1851598983}
   - component: {fileID: 1851598984}
+  - component: {fileID: 1851598985}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -6007,6 +6008,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1851598985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851598977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39eb61f2df8cfbb4fbc8eba4cd2ae7d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1859424391
@@ -6699,6 +6712,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SentryBase
       objectReference: {fileID: 0}
+    - target: {fileID: 4670333636784061573, guid: 662a0a54680e5d64fa67faf0641307ad,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sentry
+      objectReference: {fileID: 0}
     - target: {fileID: 4670333637295358221, guid: 662a0a54680e5d64fa67faf0641307ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6753,11 +6771,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4670333636784061573, guid: 662a0a54680e5d64fa67faf0641307ad,
-        type: 3}
-      propertyPath: m_TagString
-      value: Sentry
       objectReference: {fileID: 0}
     - target: {fileID: 8101821521107301655, guid: 662a0a54680e5d64fa67faf0641307ad,
         type: 3}
