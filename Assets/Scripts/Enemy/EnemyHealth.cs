@@ -15,14 +15,19 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
-
+    EnemyFreezable enemyFreezable;
+    GameObject player;
+    Shield playerShield;
 
     void Awake ()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerShield = player.GetComponentInChildren<Shield>();
         anim = GetComponent <Animator> ();
         enemyAudio = GetComponent <AudioSource> ();
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
+        enemyFreezable = GetComponent<EnemyFreezable>();
 
         currentHealth = startingHealth;
     }
@@ -60,9 +65,13 @@ public class EnemyHealth : MonoBehaviour
     {
         isDead = true;
 
+        enemyFreezable.StopCoroutine("Freeze"); // Stop freeze coroutine due to Nav Mesh error
         capsuleCollider.isTrigger = true;
 
+        anim.enabled = true;
         anim.SetTrigger ("Dead");
+
+        playerShield.AddPower(scoreValue);
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
@@ -74,7 +83,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        //ScoreManager.score += scoreValue;
+        ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);
     }
 }

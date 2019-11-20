@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 
 public class PlayerHealth : MonoBehaviour
@@ -13,12 +12,13 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public Shield shield;
 
 
     Animator anim;
     AudioSource playerAudio;
     PlayerMovement playerMovement;
-    //PlayerShooting playerShooting;
+    PlayerShooting playerShooting;
     bool isDead;
     bool damaged;
 
@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent <Animator> ();
         playerAudio = GetComponent <AudioSource> ();
         playerMovement = GetComponent <PlayerMovement> ();
-        //playerShooting = GetComponentInChildren <PlayerShooting> ();
+        playerShooting = GetComponentInChildren <PlayerShooting> ();
         currentHealth = startingHealth;
     }
 
@@ -49,17 +49,24 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage (int amount)
     {
-        damaged = true;
-
-        currentHealth -= amount;
-
-        healthSlider.value = currentHealth;
-
-        playerAudio.Play ();
-
-        if(currentHealth <= 0 && !isDead)
+        if (shield.isActive)
         {
-            Death ();
+            shield.TakeDamage(amount);
+        }
+        else
+        {
+            damaged = true;
+
+            currentHealth -= amount;
+
+            healthSlider.value = currentHealth;
+
+            playerAudio.Play();
+
+            if (currentHealth <= 0 && !isDead)
+            {
+                Death();
+            }
         }
     }
 
@@ -68,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        //playerShooting.DisableEffects ();
+        playerShooting.DisableEffects ();
 
         anim.SetTrigger ("Die");
 
@@ -76,12 +83,11 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.Play ();
 
         playerMovement.enabled = false;
-        //playerShooting.enabled = false;
+        playerShooting.enabled = false;
     }
 
-
-    public void RestartLevel ()
+    public void RestartLevel()
     {
-        SceneManager.LoadScene (0);
+        // It must stay due to animation event
     }
 }
