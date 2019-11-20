@@ -89,7 +89,7 @@ namespace CompleteProject
         {
             foreach (EnemyMovement enm in enemies)
             {
-                if (Vector3.Magnitude(transform.position - enm.transform.position) < alertRange * alertRange)
+                if (Vector3.SqrMagnitude(transform.position - enm.transform.position) < alertRange * alertRange)
                     enm.TargetSentry = true;
             }
         }

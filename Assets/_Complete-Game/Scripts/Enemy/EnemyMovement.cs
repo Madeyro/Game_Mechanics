@@ -6,11 +6,12 @@ namespace CompleteProject
     public class EnemyMovement : MonoBehaviour
     {
         Transform player;               // Reference to the player's position.
-        Transform sentry;               // Reference to the sentry's position.
+        public Transform sentry;               // Reference to the sentry's position.
         PlayerHealth playerHealth;      // Reference to the player's health.
         EnemyHealth enemyHealth;        // Reference to this enemy's health.
         UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
 
+        [SerializeField]
         public bool TargetSentry { get { return targetSentry; } set { targetSentry = (value && sentry); } }
         private bool targetSentry = false;
 

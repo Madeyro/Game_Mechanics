@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_Complete-Game/_Level-Medkit.unity
     guid: 520f84c531f5e904dbad70a5ef36ef0e
   - enabled: 1
-    path: Assets/Scenes/Level 02.unity
+    path: Assets/_Complete-Game/Level 02.unity
     guid: 895a495a78ffa31428706394f1d5c524
   - enabled: 1
     path: Assets/_Complete-Game/_MechLevel_Sentry.unity
