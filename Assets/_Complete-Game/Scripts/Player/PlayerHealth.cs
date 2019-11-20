@@ -79,6 +79,18 @@ namespace CompleteProject
             }
         }
 
+        public void Heal (float amount)
+        {
+            // Reduce the current health by the damage amount.
+            currentHealth += (int) (startingHealth * amount);
+
+            // Cap HP on 100
+            currentHealth = currentHealth > 100 ? 100 : currentHealth;
+
+            // Set the health bar's value to the current health.
+            healthSlider.value = currentHealth;
+        }
+
 
         void Death ()
         {
