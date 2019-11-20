@@ -36,7 +36,7 @@ namespace CompleteProject
 
         void Start()
         {
-            shootableMask = LayerMask.GetMask("Shootable");
+            shootableMask = LayerMask.GetMask("Shootable", "Enemy");
             mr = GetComponent<MeshRenderer>();
             col = GetComponent<CapsuleCollider>();
             scol = GetComponent<SphereCollider>();
@@ -78,7 +78,7 @@ namespace CompleteProject
 
         public void OnTriggerEnter(Collider c)
         {
-            if (c.gameObject.layer == 9)
+            if (c.gameObject.CompareTag("Enemy"))
             {
                 EnemyHealth comp = c.GetComponent<EnemyHealth>();
                 if (comp != null)
@@ -90,7 +90,7 @@ namespace CompleteProject
         }
         public void OnTriggerExit(Collider c)
         {
-            if (c.gameObject.layer == 9)
+            if (c.gameObject.CompareTag("Enemy"))
             {
                 EnemyHealth comp = c.GetComponent<EnemyHealth>();
                 if (comp != null)

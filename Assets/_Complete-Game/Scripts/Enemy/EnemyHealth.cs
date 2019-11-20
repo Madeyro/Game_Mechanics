@@ -22,6 +22,10 @@ namespace CompleteProject
         CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
         public bool IsDead { private set; get; }    // Whether the enemy is dead.
         bool isSinking;                             // Whether the enemy has started sinking through the floor.
+        
+        EnemyFreezable enemyFreezable;
+        GameObject player;
+        Shield playerShield;
 
         public delegate void EnemyDeathEventHandler(GameObject source);
         public event EnemyDeathEventHandler Died;
@@ -29,6 +33,9 @@ namespace CompleteProject
         void Awake()
         {
             // Setting up the references.
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerShield = player.GetComponentInChildren<Shield>();
+            enemyFreezable = GetComponent<EnemyFreezable>();
             anim = GetComponent<Animator>();
             enemyAudio = GetComponent<AudioSource>();
             hitParticles = GetComponentInChildren<ParticleSystem>();
@@ -103,11 +110,17 @@ namespace CompleteProject
 
             enemies.Remove(movement);
 
+            enemyFreezable.StopCoroutine("Freeze"); // Stop freeze coroutine due to Nav Mesh error
+
+            anim.enabled = true;
+
             // Turn the collider into a trigger so shots can pass through it.
             capsuleCollider.isTrigger = true;
 
             // Tell the animator that the enemy is dead.
             anim.SetTrigger("Dead");
+
+            playerShield.AddPower(scoreValue);
 
             // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
             enemyAudio.clip = deathClip;

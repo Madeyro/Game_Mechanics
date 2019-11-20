@@ -2,102 +2,105 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour
+namespace CompleteProject
 {
-
-    protected SphereCollider shieldCollider;
-    protected MeshRenderer shieldRenderer;
-
-    public float shieldDuration; // How long (seconds) can shield be active 
-    public int maxHealth;
-    public int health;
-    public bool isActive = false;
-    public int maxPower;// power that is needed to activate shield
-    public int currentPower;
-
-    public ShieldUIManager shieldUI;
-
-
-
-
-    // Start is called before the first frame update
-    protected virtual void Awake()
+    public class Shield : MonoBehaviour
     {
-        shieldCollider = GetComponent<SphereCollider>();
-        shieldRenderer = GetComponent<MeshRenderer>();
 
-        currentPower = maxPower;
-        health = maxHealth;
+        protected SphereCollider shieldCollider;
+        protected MeshRenderer shieldRenderer;
 
-        ShieldDeactivation();
-        shieldUI.InitShieldUI(currentPower, health);
-        shieldUI.RedrawShieldUI(currentPower, health);
-    }
+        public float shieldDuration; // How long (seconds) can shield be active 
+        public int maxHealth;
+        public int health;
+        public bool isActive = false;
+        public int maxPower;// power that is needed to activate shield
+        public int currentPower;
 
-    protected virtual void ShieldActivation()
-    {
-        if (currentPower == maxPower)
+        public ShieldUIManager shieldUI;
+
+
+
+
+        // Start is called before the first frame update
+        protected virtual void Awake()
         {
-            // Activate the shield
-            health = maxHealth; // New shield => new life
-            shieldUI.RedrawShieldHealthUI(health);
+            shieldCollider = GetComponent<SphereCollider>();
+            shieldRenderer = GetComponent<MeshRenderer>();
 
-            isActive = true;
-            shieldCollider.enabled = true;
-            shieldRenderer.enabled = true;
+            currentPower = maxPower;
+            health = maxHealth;
 
-            currentPower = 0; // New shield => zero power
-            shieldUI.RedrawShieldPowerUI(currentPower);
-            StartCoroutine("RunTimer");
+            ShieldDeactivation();
+            shieldUI.InitShieldUI(currentPower, health);
+            shieldUI.RedrawShieldUI(currentPower, health);
         }
-    }
 
-    protected virtual IEnumerator RunTimer()
-    {
-        shieldUI.SetTimerText(shieldDuration.ToString());
-        shieldUI.ActivateTimer();
-        // Start shield duration => after that time deactive the shield
-        yield return new WaitForSeconds(shieldDuration);
-        ShieldDeactivation();
-    }
-
-    protected virtual void ShieldDeactivation()
-    {
-        // Deactivate the shield
-        shieldCollider.enabled = false;
-        shieldRenderer.enabled = false;
-        isActive = false;
-
-        shieldUI.DeactivateTimer();
-    }
-
-    public void TakeDamage(int amount)
-    {
-        health -= amount;
-        if (health <= 0)
+        protected virtual void ShieldActivation()
         {
-            // Deactivate shield if it is broken
-            health = 0;
-            StopCoroutine("RunTimer");
+            if (currentPower == maxPower)
+            {
+                // Activate the shield
+                health = maxHealth; // New shield => new life
+                shieldUI.RedrawShieldHealthUI(health);
+
+                isActive = true;
+                shieldCollider.enabled = true;
+                shieldRenderer.enabled = true;
+
+                currentPower = 0; // New shield => zero power
+                shieldUI.RedrawShieldPowerUI(currentPower);
+                StartCoroutine("RunTimer");
+            }
+        }
+
+        protected virtual IEnumerator RunTimer()
+        {
+            shieldUI.SetTimerText(shieldDuration.ToString());
+            shieldUI.ActivateTimer();
+            // Start shield duration => after that time deactive the shield
+            yield return new WaitForSeconds(shieldDuration);
             ShieldDeactivation();
         }
-        shieldUI.RedrawShieldHealthUI(health);
-    }
 
-    public void AddPower(int amount)
-    {
-        // Add some amount to shield power and redraw its UI
-        currentPower += amount;
-        if (currentPower > maxPower)
+        protected virtual void ShieldDeactivation()
         {
-            currentPower = maxPower;
-        }
-        else if (currentPower < 0)
-        {
-            currentPower = 0;
-        }
-        shieldUI.RedrawShieldPowerUI(currentPower);
-    }
+            // Deactivate the shield
+            shieldCollider.enabled = false;
+            shieldRenderer.enabled = false;
+            isActive = false;
 
-    
+            shieldUI.DeactivateTimer();
+        }
+
+        public void TakeDamage(int amount)
+        {
+            health -= amount;
+            if (health <= 0)
+            {
+                // Deactivate shield if it is broken
+                health = 0;
+                StopCoroutine("RunTimer");
+                ShieldDeactivation();
+            }
+            shieldUI.RedrawShieldHealthUI(health);
+        }
+
+        public void AddPower(int amount)
+        {
+            // Add some amount to shield power and redraw its UI
+            currentPower += amount;
+            if (currentPower > maxPower)
+            {
+                currentPower = maxPower;
+            }
+            else if (currentPower < 0)
+            {
+                currentPower = 0;
+            }
+            shieldUI.RedrawShieldPowerUI(currentPower);
+        }
+
+
+    }
 }

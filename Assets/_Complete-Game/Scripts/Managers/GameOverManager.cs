@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CompleteProject
 {
     public class GameOverManager : MonoBehaviour
     {
         public PlayerHealth playerHealth;       // Reference to the player's health.
-
+        public float restartDelay = 5f;
 
         Animator anim;                          // Reference to the animator component.
-
+        float restartTimer;
 
         void Awake ()
         {
@@ -24,6 +25,12 @@ namespace CompleteProject
             {
                 // ... tell the animator the game is over.
                 anim.SetTrigger ("GameOver");
+                restartTimer += Time.deltaTime;
+                if (restartTimer >= restartDelay)
+                {
+                    // Reload the level that is currently loaded.
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
             }
         }
     }

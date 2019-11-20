@@ -14,7 +14,7 @@ namespace CompleteProject
         public AudioClip deathClip;                                 // The audio clip to play when the player dies.
         public float flashSpeed = 5f;                               // The speed the damageImage will fade at.
         public Color flashColour = new Color(1f, 0f, 0f, 0.1f);     // The colour the damageImage is set to, to flash.
-
+        public Shield shield;
 
         Animator anim;                                              // Reference to the Animator component.
         AudioSource playerAudio;                                    // Reference to the AudioSource component.
@@ -59,23 +59,30 @@ namespace CompleteProject
 
         public void TakeDamage (int amount)
         {
-            // Set the damaged flag so the screen will flash.
-            damaged = true;
-
-            // Reduce the current health by the damage amount.
-            currentHealth -= amount;
-
-            // Set the health bar's value to the current health.
-            healthSlider.value = currentHealth;
-
-            // Play the hurt sound effect.
-            playerAudio.Play ();
-
-            // If the player has lost all it's health and the death flag hasn't been set yet...
-            if(currentHealth <= 0 && !isDead)
+            if (shield.isActive)
             {
-                // ... it should die.
-                Death ();
+                shield.TakeDamage(amount);
+            }
+            else
+            {
+                // Set the damaged flag so the screen will flash.
+                damaged = true;
+
+                // Reduce the current health by the damage amount.
+                currentHealth -= amount;
+
+                // Set the health bar's value to the current health.
+                healthSlider.value = currentHealth;
+
+                // Play the hurt sound effect.
+                playerAudio.Play();
+
+                // If the player has lost all it's health and the death flag hasn't been set yet...
+                if (currentHealth <= 0 && !isDead)
+                {
+                    // ... it should die.
+                    Death();
+                }
             }
         }
 
@@ -116,7 +123,7 @@ namespace CompleteProject
         public void RestartLevel ()
         {
             // Reload the level that is currently loaded.
-            SceneManager.LoadScene (0);
+            //SceneManager.LoadScene (0);
         }
     }
 }

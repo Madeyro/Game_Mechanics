@@ -11,6 +11,8 @@ namespace CompleteProject
         EnemyHealth enemyHealth;        // Reference to this enemy's health.
         UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
 
+        Animator anim;
+
         [SerializeField]
         public bool TargetSentry { get { return targetSentry; } set { targetSentry = (value && sentry); } }
         private bool targetSentry = false;
@@ -24,6 +26,7 @@ namespace CompleteProject
             playerHealth = player.GetComponent <PlayerHealth> ();
             enemyHealth = GetComponent <EnemyHealth> ();
             nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
+            anim = GetComponent<Animator>();
         }
 
 
@@ -40,6 +43,25 @@ namespace CompleteProject
             {
                 // ... disable the nav mesh agent.
                 nav.enabled = false;
+            }
+        }
+
+        public void StopMovement()
+        {
+            if (nav.enabled)
+            {
+                nav.isStopped = true;
+                anim.enabled = false;
+            }
+
+        }
+
+        public void ResumeMovement()
+        {
+            if (nav.enabled)
+            {
+                nav.isStopped = false;
+                anim.enabled = true;
             }
         }
     }

@@ -25,7 +25,7 @@ namespace CompleteProject
         void Awake ()
         {
             // Create a layer mask for the Shootable layer.
-            shootableMask = LayerMask.GetMask ("Shootable");
+            shootableMask = LayerMask.GetMask ("Shootable","Enemy");
 
             // Set up the references.
             gunParticles = GetComponent<ParticleSystem> ();
