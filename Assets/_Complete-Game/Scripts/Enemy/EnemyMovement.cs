@@ -6,15 +6,20 @@ namespace CompleteProject
     public class EnemyMovement : MonoBehaviour
     {
         Transform player;               // Reference to the player's position.
+        Transform sentry;               // Reference to the sentry's position.
         PlayerHealth playerHealth;      // Reference to the player's health.
         EnemyHealth enemyHealth;        // Reference to this enemy's health.
         UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
+
+        public bool TargetSentry { get { return targetSentry; } set { targetSentry = (value && sentry); } }
+        private bool targetSentry = false;
 
 
         void Awake ()
         {
             // Set up the references.
             player = GameObject.FindGameObjectWithTag ("Player").transform;
+            sentry = GameObject.FindGameObjectWithTag("Sentry")?.transform;
             playerHealth = player.GetComponent <PlayerHealth> ();
             enemyHealth = GetComponent <EnemyHealth> ();
             nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
@@ -27,7 +32,7 @@ namespace CompleteProject
             if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
             {
                 // ... set the destination of the nav mesh agent to the player.
-                nav.SetDestination (player.position);
+                nav.SetDestination (TargetSentry ? sentry.position : player.position);
             }
             // Otherwise...
             else
