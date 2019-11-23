@@ -11,7 +11,11 @@ Medkit can appear either in the center of the labyrint or near enemy spawn point
 
 ## (F3) - Micka, 456365
 
-Pressing Q triggers a freezing shield that explodes after 5s and freezes enemies. This shield has its own health and energy. If the player kill the enemy, energy value is increased. If energy is full filled, the shield can be activated. When the shield is destroyed (health == 0), the freeze effect will not be activated. 
+Pressing Q triggers a freezing shield that explodes after 5s and freezes enemies.
+This shield has its own health and energy. 
+If the player kill the enemy, energy value is increased. 
+If energy is full filled, the shield can be activated. 
+When the shield is destroyed (health == 0), the freeze effect will not be activated. 
 
 ## (F4) - Ivanicky, 456439
 

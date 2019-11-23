@@ -10977,5 +10977,10 @@ PrefabInstance:
       propertyPath: sentryTipText
       value: 
       objectReference: {fileID: 435846980}
+    - target: {fileID: 2895551865679582531, guid: d7760afae362ed84ea8a8f5cd414782b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.408
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7760afae362ed84ea8a8f5cd414782b, type: 3}
