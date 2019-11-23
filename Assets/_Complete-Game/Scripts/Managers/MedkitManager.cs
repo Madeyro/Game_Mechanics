@@ -8,7 +8,7 @@ namespace CompleteProject
         public PlayerHealth playerHealth;       // Reference to the player's heatlh.
         public GameObject medkit;               // The enemy prefab to be spawned.
         public float spawnTime = 30f;           // How long between each spawn.
-        public Transform spawnPoint;            // A spawn point.
+        public Transform[] spawnPoints;         // An array of the spawn points med-kit can spawn from.
 
 
         void Start()
@@ -29,7 +29,7 @@ namespace CompleteProject
 
             if (!GameObject.Find("Medkit(Clone)"))
             {
-                Instantiate(medkit, spawnPoint);
+                Instantiate(medkit, spawnPoints[Random.Range(0, spawnPoints.Length)]);
             }
         }
     }
